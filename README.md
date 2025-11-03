@@ -7,7 +7,8 @@ EPrimero construye un dataset de **descriptores espectrales** a partir de grabac
 
 ## 📦 Datos fuente
 
-- **Grabaciones**: archivos locales `*.mp3` y `*.flac` (Xeno-canto y British Birdsong).  
+- **Grabaciones**: archivos locales `*.mp3` y `*.flac` (Xeno-canto y British Birdsong).
+- Todos los archivos de audio se encontraban con una frecuencia de muestreo de 44100 Hz.  
 - **Metadatos**:
   - `Xenocanto_metadata_qualityA_selection.csv` → columnas relevantes: `[id, label]` (columnas 1 y 5).
   - `birdsong_metadata.csv` (British BirdSong) → columnas relevantes: `[id, label]` (columnas 1 y 4).
@@ -18,21 +19,26 @@ Cada archivo de audio contiene un **ID** con el patrón `XC<id>` (ej. `XC12345_.
 
 ## 🛠 Extracción de características
 
-La extracción se realiza con MATLAB, ya que contiene funciones de extracción de características validadas y referenciadas. Con estas funciones se extraen las características espectrales de cada audio, por ventanas de tiempo hamming de 100 ms con solapamiento de 30 ms.
+Con el fin de mejorar el costo computacional, se remuestrean todos los audios a una frecuencia de muestreo de 32 kHz, teniendo en cuenta que el espectro frecuencial del canto de aves es significativo hasta 12-14 kHz aproximadamente.
 
-| Descriptor | Significado | Estadísticos |
-|-------------|-------------|---------------|
-| Cm, Cd, Cv | Spectral Centroid | Media, desviación, coef. variación |
-| Sm, Sd, Sv | Spectral Spread | 〃 |
-| SKm, SKd, SKv | Spectral Skewness | 〃 |
-| Km, Kd, Kv | Spectral Kurtosis | 〃 |
-| Em, Ed, Ev | Spectral Entropy | 〃 |
-| Fm, Fd, Fv | Spectral Flatness | 〃 |
-| CRm, CRd, CRv | Spectral Crest | 〃 |
-| FLm, FLd, FLv | Spectral Flux | 〃 |
-| SLm, SLd, SLv | Spectral Slope | 〃 |
-| DCm, DCd, DCv | Spectral Decrease | 〃 |
-| RPm, RPd, RPv | Spectral Rolloff Point | 〃 |
+Posterior a ello, se realiza con MATLAB la extracción de las características espectrales de los audios, ya que contiene una librería de funciones de extracción validadas y referenciadas; con lo que se garantiza fidelidad de los datos.
+Con estas funciones se extraen las características espectrales de cada audio, por ventanas de tiempo hamming de 100 ms con solapamiento de 30 ms.
+
+Cada descriptor espectral se reduce a tres valores estadísticos significativos Media (Xm), desviación estándar (Xd) y coeficiente de variación(Xv).
+
+| Descriptor    | Significado            | # Columna  |
+| ------------- | ---------------------- | ---------- |
+| Cm, Cd, Cv    | Spectral Centroid      | 3, 4, 5    |
+| Sm, Sd, Sv    | Spectral Spread        | 6, 7, 8    |
+| SKm, SKd, SKv | Spectral Skewness      | 9, 10, 11  |
+| Km, Kd, Kv    | Spectral Kurtosis      | 12, 13, 14 |
+| Em, Ed, Ev    | Spectral Entropy       | 15, 16, 17 |
+| Fm, Fd, Fv    | Spectral Flatness      | 18, 19, 20 |
+| CRm, CRd, CRv | Spectral Crest         | 21, 22, 23 |
+| FLm, FLd, FLv | Spectral Flux          | 24, 25, 26 |
+| SLm, SLd, SLv | Spectral Slope         | 27, 28, 29 |
+| DCm, DCd, DCv | Spectral Decrease      | 30, 31, 32 |
+| RPm, RPd, RPv | Spectral Rolloff Point | 33, 34, 35 |
 
 El dataset final contiene **35 columnas**:  
 `Name`, `Label` + 33 descriptores numéricos.
