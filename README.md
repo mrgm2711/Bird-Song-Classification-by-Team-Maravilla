@@ -1,7 +1,7 @@
 # Bird-Song-Classification-by-Team-Maravilla
-Ene ste proyecto se entrena un modelo de clasificación de canto de aves por medio de coeficientes espectrales normalizados de 0 a 1, resumidos en su promedio, desviación estándar y coeficiente de variación.
+En este proyecto se entrena un modelo de clasificación de canto de aves de acuerdo con descriptores espectrales de audios etiquetados de cantos de aves.
 
-EPrimero construye un dataset de **descriptores espectrales** a partir de grabaciones de cantos de aves para entrenar modelos de **clasificación multiclase** (especies). El flujo incluye: **mapeo de etiquetas**, **extracción de features acústicas**, **limpieza**, **normalización opcional**, **filtrado por correlación** y **EDA**.
+Primero construye un dataset de **descriptores espectrales** a partir de grabaciones de cantos de aves para entrenar modelos de **clasificación multiclase** (especies). El flujo incluye: **mapeo de etiquetas**, **extracción de features acústicas**, **limpieza**, **normalización opcional**, **filtrado por correlación** y **EDA**.
 
 ---
 
