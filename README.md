@@ -1,4 +1,11 @@
 # Bird-Song-Classification-by-Team-Maravilla
+
+*Integrantes:*
+
+-María del Rosario González Marrugo
+-Daniel Vanegas
+-David Ríos
+
 En este proyecto se entrena un modelo de clasificación de canto de aves de acuerdo con descriptores espectrales de audios etiquetados de cantos de aves.
 
 Primero construye un dataset de **descriptores espectrales** a partir de grabaciones de cantos de aves para entrenar modelos de **clasificación multiclase** (especies). El flujo incluye: **mapeo de etiquetas**, **extracción de features acústicas**, **limpieza**, **normalización opcional**, **filtrado por correlación** y **EDA**.
@@ -85,3 +92,7 @@ Se usa `LabelEncoder` para transformar especies (texto) en números:
 from sklearn.preprocessing import LabelEncoder
 le = LabelEncoder()
 y = le.fit_transform(df['Label'])
+
+## 🔎 El mejor rendimiento de modelo
+
+Se logra con una selección de variables por medio de random forest.
